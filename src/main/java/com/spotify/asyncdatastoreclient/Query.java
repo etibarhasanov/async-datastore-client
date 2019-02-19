@@ -152,6 +152,30 @@ public class Query implements Statement {
     return this;
   }
 
+  /**
+   * Tell Datastore to skip given number of entities.
+   *
+   * @param offset the number of entities to be skipped.
+   * @return this query statement.
+   */
+  public Query offset(final int offset) {
+    query.setOffset(offset);
+    return this;
+  }
+
+  /**
+   * remove existing offset.
+   * @return this query statement.
+   */
+  public Query clearOffset(){
+    query.clearOffset();
+    return this;
+  }
+
+  public int getOffset(){
+    return query.getOffset();
+  }
+
   com.google.datastore.v1.Query getPb(String namespace) {
     if (filters.size() == 1) {
       query.setFilter(filters.get(0).getPb(namespace));
